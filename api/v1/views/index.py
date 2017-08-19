@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-doc
+create routes for /status
 """
 from flask import Blueprint, render_template, make_response, jsonify
 from api.v1.views import app_views
