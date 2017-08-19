@@ -65,12 +65,14 @@ class FileStorage:
             k_cls = d['__class__']
             FileStorage.__objects[o_id] = FileStorage.CNC[k_cls](**d)
 
+
     def delete(self, obj=None):
         """ deletes obj from __objects if it's inside """
         try:
             del __objects[obj]
         except:
             return
+
 
     def close(self):
         """
