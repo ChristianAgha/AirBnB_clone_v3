@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3#!/usr/bin/python3
 """
 Handles I/O, writing and reading, of JSON for storage of all class instances
 """
@@ -84,11 +84,12 @@ class FileStorage:
         """
         Returns the object based on the class name and its ID
         """
+        print("get stuff")
         if cls and id:
             objs = self.all(cls)
             for class_id, obj in objs.items():
-                if obj.__class__.__name__ == cls and class_id == id:
-                    return obj
+                if class_id.split(".")[1] == id:
+                    return (objs[class_id])
             return None
 
     def count(self, cls=None):
