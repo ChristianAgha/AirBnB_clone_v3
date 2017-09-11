@@ -96,7 +96,7 @@ github repo
 * Kimberly Wong, [kjowong](http://github.com/kjowong) | [@kjowong](http://twitter.com/kjowong) | [kjowong@gmail.com](kjowong@gmail.com)
 * Carrie Ybay, [hicarrie](http://github.com/hicarrie) | [@hicarrie_](http://twitter.com/hicarrie_)
 * Christian Agha, [ChristianAgha](http://github.com/ChristianAgha) | [@ChristyanAgha](http://twitter.com/ChristyanAgha)
-* Chris Turner, [clturner](http://github.com/clturner) | [roamrstravel](http://twitter.com/roamrstravel)
+* Chris Turner, [clturner](http://github.com/clturner) | [@roamrstravel](http://twitter.com/roamrstravel)
 
 ## License
 
