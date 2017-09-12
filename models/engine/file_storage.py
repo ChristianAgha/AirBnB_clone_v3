@@ -85,23 +85,14 @@ class FileStorage:
         Returns the object based on the class name and its ID
         """
         if cls and id:
-            obj_class = self.__session.query(self.CNC.get(cls)).all()
-            print("object_class", obj_class)
-            for item in obj_class:
-                if item.__class__.__name__ == cls and item.id == id:
-                    return item
-        else:
-            return(len(self.all()))
+            objs = self.all(cls)
+            for class_id, obj in objs.items():
+                if obj.__class__.__name__ == cls and class_id == id:
+                    return obj
+            return None
 
     def count(self, cls=None):
         """
         Returns the number of objects in storage matching the given class name.
         """
-        num = 0
-        if cls:
-            obj_class = self.__session.query(self.CNC.get(cls)).all()
-            for item in obj_class:
-                num += 1
-                return num
-        else:
-            return len(self.all())
+        return len(self.all(cls))
