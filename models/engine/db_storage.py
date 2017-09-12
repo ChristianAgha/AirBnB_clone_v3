@@ -96,5 +96,5 @@ class DBStorage:
         """
         Returns the number of objects in storage matching the given class name.
         """
-        all_object = all(cls)
+        all_objects = self.all(cls)
         return len(all_objects)
