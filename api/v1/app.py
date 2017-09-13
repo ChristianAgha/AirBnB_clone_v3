@@ -2,7 +2,7 @@
 """
 register blueprint for flask app
 """
-from flask import Flask, jsonify, Blueprint
+from flask import Flask, jsonify, Blueprint, make_response
 from models import storage
 from api.v1.views import app_views
 
@@ -13,6 +13,11 @@ app.register_blueprint(app_views)
 @app.teardown_appcontext
 def app_teardown(err):
     return storage.close()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
