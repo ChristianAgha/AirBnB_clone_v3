@@ -85,8 +85,8 @@ class DBStorage:
         """
         Returns the object based on the class name and its ID
         """
-        if cls:
-            obj_class = self.__session.query(self.CNC.get(cls)).all()
+        if cls and id:
+            obj_class = self.all(cls)
             for item in obj_class:
                 if item.__class__.__name__ == cls:
                     if item.id == id:
@@ -97,5 +97,4 @@ class DBStorage:
         """
         Returns the number of objects in storage matching the given class name.
         """
-        all_objects = self.all(cls)
-        return len(all_objects)
+        return len(self.all(cls))

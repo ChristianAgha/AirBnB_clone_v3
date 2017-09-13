@@ -2,19 +2,21 @@
 """
 create routes for /status
 """
-from flask import Blueprint, render_template, make_response, jsonify
 from api.v1.views import app_views
+from flask import Blueprint, render_template, make_response, jsonify
 from models import city, place, review, state, user
 from models import storage, base_model, amenity
 
 
 @app_views.route('/status')
 def index():
+    """Returns status"""
     return make_response(jsonify({'status': 'OK'}))
 
 
 @app_views.route('/stats')
 def stats():
+    """Returns stats"""
     CNC = {
         'Amenity': "amenities",
         'City': "cities",
