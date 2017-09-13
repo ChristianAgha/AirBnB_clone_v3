@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3#!/usr/bin/python3
 """
 Handles I/O, writing and reading, of JSON for storage of all class instances
 """
@@ -30,6 +30,12 @@ class FileStorage:
 
     def all(self, cls=None):
         """returns private attribute: __objects"""
+        if cls:
+            objects_dict = {}
+            for class_id, obj in FileStorage.__objects.items():
+                if type(obj).__name__ == cls:
+                    objects_dict[class_id] = obj
+            return objects_dict
         return FileStorage.__objects
 
     def new(self, obj):
@@ -59,6 +65,7 @@ class FileStorage:
             k_cls = d['__class__']
             FileStorage.__objects[o_id] = FileStorage.CNC[k_cls](**d)
 
+
     def delete(self, obj=None):
         """ deletes obj from __objects if it's inside """
         try:
@@ -66,8 +73,26 @@ class FileStorage:
         except:
             return
 
+
     def close(self):
         """
             calls the reload() method for deserialization from JSON to objects
         """
         self.reload()
+
+    def get(self, cls, id):
+        """
+        Returns the object based on the class name and its ID
+        """
+        if cls and id:
+            objs = self.all(cls)
+            for class_id, obj in objs.items():
+                if class_id.split(".")[1] == id:
+                    return (objs[class_id])
+            return None
+
+    def count(self, cls=None):
+        """
+        Returns the number of objects in storage matching the given class name.
+        """
+        return len(self.all(cls))

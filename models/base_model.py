@@ -100,7 +100,8 @@ class BaseModel:
             if (self.__is_serializable(value)):
                 bm_dict[key] = value
             else:
-                bm_dict[key] = str(value)
+                if type(value) is datetime:
+                    bm_dict[key] = str(value)
         bm_dict['__class__'] = type(self).__name__
         return(bm_dict)
 
@@ -113,4 +114,4 @@ class BaseModel:
         """
             deletes current instance from storage
         """
-        self.delete()
+        models.storage.delete(self)

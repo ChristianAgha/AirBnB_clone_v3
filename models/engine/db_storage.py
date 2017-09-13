@@ -41,7 +41,8 @@ class DBStorage:
         if cls:
             obj_class = self.__session.query(self.CNC.get(cls)).all()
             for item in obj_class:
-                obj_dict[item.id] = item
+                obj_format = "{}.{}".format(item.__class__.__name__, item.id)
+                obj_dict[obj_format] = item
             return obj_dict
         for class_name in self.CNC:
             if class_name == 'BaseModel':
@@ -49,7 +50,8 @@ class DBStorage:
             obj_class = self.__session.query(
                 self.CNC.get(class_name)).all()
             for item in obj_class:
-                obj_dict[item.id] = item
+                obj_format = "{}.{}".format(item.__class__.__name__, item.id)
+                obj_dict[obj_format] = item
         return obj_dict
 
     def new(self, obj):
@@ -78,3 +80,21 @@ class DBStorage:
             calls remove() on private session attribute (self.session)
         """
         self.__session.remove()
+
+    def get(self, cls, id):
+        """
+        Returns the object based on the class name and its ID
+        """
+        if cls and id:
+            obj_class = self.all(cls)
+            for item in obj_class:
+                if item.__class__.__name__ == cls:
+                    if item.id == id:
+                        return item
+        return None
+
+    def count(self, cls=None):
+        """
+        Returns the number of objects in storage matching the given class name.
+        """
+        return len(self.all(cls))
