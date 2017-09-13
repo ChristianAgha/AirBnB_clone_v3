@@ -4,7 +4,7 @@ register blueprint for flask app
 """
 from flask import Flask, jsonify, Blueprint, make_response
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app_views, states
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
