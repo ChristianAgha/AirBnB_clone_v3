@@ -10,11 +10,13 @@ from models import storage, base_model, amenity
 
 @app_views.route('/status')
 def index():
+    """Returns status"""
     return make_response(jsonify({'status': 'OK'}))
 
 
 @app_views.route('/stats')
 def stats():
+    """Returns stats"""
     CNC = {
         'Amenity': "amenities",
         'City': "cities",
