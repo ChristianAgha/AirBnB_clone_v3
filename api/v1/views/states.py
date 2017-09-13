@@ -2,8 +2,8 @@
 """
 Handles all default RestFul API actions for State class
 """
-from flask import Flask, jsonify, Blueprint, make_response, render_template
 from api.v1.views import app_views
+from flask import Blueprint, Flask, jsonify, make_response, render_template
 from models import state, storage
 
 
@@ -24,7 +24,8 @@ def get_State_ID(state_id=None):
     return not_found(404)
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_State(state_id=None):
     """delete state using ID"""
 
