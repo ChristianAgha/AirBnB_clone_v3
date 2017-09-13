@@ -22,6 +22,10 @@ def get_State_ID(state_id=None):
     return not_found(404)
 
 
+#@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+#def delete_State(state_id=None):
+
+
 @app_views.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
