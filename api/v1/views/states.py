@@ -9,5 +9,19 @@ from models import state, storage
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_States():
-    all_states = [one_state.to_json() for one_state in storage.all("State").values()]
-    return jsonify(all_states)
+    all_st = [st.to_json() for st in storage.all("State").values()]
+    return jsonify(all_st)
+
+
+@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+def get_State_ID(state_id=None):
+    all_st = [st.to_json() for st in storage.all("State").values()]
+    for state in all_st:
+        if (state.get("id") == state_id):
+            return jsonify(state)
+    return not_found(404)
+
+
+@app_views.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
