@@ -89,7 +89,7 @@ class DBStorage:
             obj_class = self.__session.query(self.CNC.get(cls)).all()
             for item in obj_class:
                 if item.__class__.__name__ == cls:
-                    if item.id == id.split('.')[1]:
+                    if item.id == id:
                         return item
         return None
 

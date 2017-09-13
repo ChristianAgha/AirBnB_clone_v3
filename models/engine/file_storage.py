@@ -84,7 +84,6 @@ class FileStorage:
         """
         Returns the object based on the class name and its ID
         """
-        print("get stuff")
         if cls and id:
             objs = self.all(cls)
             for class_id, obj in objs.items():
