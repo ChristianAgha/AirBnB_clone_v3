@@ -1,7 +1,5 @@
 #!/usr/bin/python
-"""
-register blueprint for flask app
-"""
+""" Register blueprint for flask app """
 from api.v1.views import app_views, states
 from flask import Flask, jsonify, Blueprint, make_response
 from models import storage

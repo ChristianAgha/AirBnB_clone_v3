@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-create routes for /status
-"""
+""" Create routes for /status """
 from api.v1.views import app_views
 from flask import Blueprint, render_template, make_response, jsonify
 from models import city, place, review, state, user
