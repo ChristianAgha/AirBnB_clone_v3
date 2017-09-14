@@ -76,25 +76,14 @@ class DBStorage:
                 expire_on_commit=False))
 
     def close(self):
-        """
-            calls remove() on private session attribute (self.session)
-        """
+        """ Calls remove() on private session attribute """
         self.__session.remove()
 
     def get(self, cls, id):
-        """
-        Returns the object based on the class name and its ID
-        """
-        if cls and id:
-            obj_class = self.all(cls)
-            for item in obj_class:
-                if item.__class__.__name__ == cls:
-                    if item.id == id:
-                        return item
-        return None
+        """ Returns the object based on the class name and its ID """
+        obj_key = "{}.{}".format(cls, id)
+        return self.all(cls).get(obj_key)
 
     def count(self, cls=None):
-        """
-        Returns the number of objects in storage matching the given class name.
-        """
+        """ Returns the number of objects based in input class """
         return len(self.all(cls))

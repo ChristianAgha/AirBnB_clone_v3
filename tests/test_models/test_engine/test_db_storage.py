@@ -66,6 +66,24 @@ class TestDBStorageDocs(unittest.TestCase):
         actual = DBStorage.delete.__doc__
         self.assertEqual(expected, actual)
 
+    def test_doc_get(self):
+        """... documentation for get function"""
+        expected = " Returns the object based on the class name and its ID "
+        actual = DBStorage.get.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_close(self):
+        """... documentation for close function"""
+        expected = " Calls remove() on private session attribute "
+        actual = DBStorage.close.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_count(self):
+        """... documentation for count function"""
+        expected = " Returns the number of objects based in input class "
+        actual = DBStorage.count.__doc__
+        self.assertEqual(expected, actual)
+
 
 @unittest.skipIf(storage_type != 'db', 'skip if environ is not db')
 class TestStateDBInstances(unittest.TestCase):
@@ -74,7 +92,7 @@ class TestStateDBInstances(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
-        print('......... Testing DBStorage .;.......')
+        print('......... Testing DBStorage .....')
         print('........ For State Class ........')
         print('.................................\n\n')
 
@@ -167,7 +185,7 @@ class TestCityDBInstances(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
-        print('...... Testing DBStorage ......')
+        print('...... Testing DBStorage ........')
         print('.......... City  Class ..........')
         print('.................................\n\n')
 
@@ -207,7 +225,7 @@ class TestCityDBInstancesUnderscore(unittest.TestCase):
     def setUpClass(cls):
         print('\n\n.................................')
         print('...... Testing FileStorage ......')
-        print('.......... City Class ..........')
+        print('.......... City Class ...........')
         print('.................................\n\n')
 
     def setUp(self):
@@ -245,8 +263,8 @@ class TestPlaceDBInstances(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print('\n\n.................................')
-        print('...... Testing DBStorage ......')
-        print('.......... Place  Class ..........')
+        print('...... Testing DBStorage ........')
+        print('.......... Place  Class .........')
         print('.................................\n\n')
 
     def setUp(self):
