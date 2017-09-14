@@ -13,7 +13,7 @@ app.register_blueprint(app_views)
 @app.teardown_appcontext
 def app_teardown(self):
     """close storage files"""
-    return storage.close()
+    storage.close()
 
 
 @app.errorhandler(404)
