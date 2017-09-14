@@ -3,7 +3,7 @@
 Handles all default RestFul API actions for State class
 """
 from api.v1.views import app_views
-from flask import Blueprint, Flask, jsonify, make_response, render_template
+from flask import Blueprint, Flask, jsonify, make_response, render_template, request
 from models import state, storage
 
 
@@ -23,12 +23,21 @@ def get_State_ID(state_id=None):
             return jsonify(state)
     return not_found(404)
 
+@app_views.route('/states/<string:state_id>', methods=['PUT'])
+def add_state(state_id):
+    """add a state to database"""
+    json_data = request.get_json()
+    print(jsonify(json_data))
+    return(jsonify(json_data))
 
-@app_views.route('/states/<state_id>', methods=['DELETE'],
+@app_views.route('/states/<string:state_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_State(state_id=None):
     """delete state using ID"""
-
+    state_to_delete = request.get("State", state_id)
+    print(state_to_delete)
+    return(state_to_delete)
+    
 
 @app_views.errorhandler(404)
 def not_found(error):
