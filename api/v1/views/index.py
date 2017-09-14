@@ -26,4 +26,5 @@ def stats():
     new_dict = {}
     for key, value in CNC.items():
         new_dict[value] = storage.count(key)
+
     return jsonify(new_dict)
