@@ -65,7 +65,6 @@ class FileStorage:
             k_cls = d['__class__']
             FileStorage.__objects[o_id] = FileStorage.CNC[k_cls](**d)
 
-
     def delete(self, obj=None):
         """ deletes obj from __objects if it's inside """
         try:
@@ -73,17 +72,12 @@ class FileStorage:
         except:
             return
 
-
     def close(self):
-        """
-            calls the reload() method for deserialization from JSON to objects
-        """
+        """ Reloads method to deserialize from JSON to objects """
         self.reload()
 
     def get(self, cls, id):
-        """
-        Returns the object based on the class name and its ID
-        """
+        """ Returns the object based on the class name and its ID """
         if cls and id:
             objs = self.all(cls)
             for class_id, obj in objs.items():
@@ -92,7 +86,5 @@ class FileStorage:
             return None
 
     def count(self, cls=None):
-        """
-        Returns the number of objects in storage matching the given class name.
-        """
+        """ Returns number of objs matching given class name. """
         return len(self.all(cls))

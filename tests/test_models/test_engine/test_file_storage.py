@@ -68,6 +68,24 @@ class TestFileStorageDocs(unittest.TestCase):
         actual = FileStorage.reload.__doc__
         self.assertEqual(expected, actual)
 
+    def test_doc_close(self):
+        """... documentation for close function"""
+        expected = " Reloads method to deserialize from JSON to objects "
+        actual = FileStorage.close.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_get(self):
+        """... documentation for get function"""
+        expected = " Returns the object based on the class name and its ID "
+        actual = FileStorage.get.__doc__
+        self.assertEqual(expected, actual)
+
+    def test_doc_count(self):
+        """... documentation for count function"""
+        expected = " Returns number of objs matching given class name. "
+        actual = FileStorage.count.__doc__
+        self.assertEqual(expected, actual)
+
 
 @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
 class TestBmFsInstances(unittest.TestCase):
