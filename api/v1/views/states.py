@@ -3,34 +3,35 @@
 Handles all default RestFul API actions for State class
 """
 from api.v1.views import app_views
-from flask import Blueprint, Flask, jsonify, make_response, render_template
+from flask import abort, jsonify, make_response, request
 from models import state, storage
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_States():
     """get all states"""
-    all_st = [st.to_json() for st in storage.all("State").values()]
-    return jsonify(all_st)
+    states = storage.all("State").values()
+    states = [state.to_json() for state in states]
+    return jsonify(states)
 
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
-def get_State_ID(state_id=None):
+def get_State_ID(state_id):
     """get state with specific ID"""
-    all_st = [st.to_json() for st in storage.all("State").values()]
-    for state in all_st:
-        if (state.get("id") == state_id):
-            return jsonify(state)
-    return not_found(404)
+    state = storage.get("State", state_id)
+    if state is None:
+        return abort(404)
+    return jsonify(state.to_json())
+
 
 
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
-def delete_State(state_id=None):
+def delete_State(state_id):
     """delete state using ID"""
-
-
-@app_views.errorhandler(404)
-def not_found(error):
-    """404 error handler"""
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    state = storage.get("State", state_id)
+    if state is None:
+        return abort(404)
+    storage.delete(state)
+    storage.save()
+    return make_response(jsonify({}), 200)
