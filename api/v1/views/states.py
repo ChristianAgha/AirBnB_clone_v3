@@ -29,8 +29,14 @@ def get_State_ID(state_id):
 
     return jsonify(state.to_json())
 
+@app_views.route('/states/<string:state_id>', methods=['PUT'])
+def add_state(state_id):
+    """add a state to database"""
+    json_data = request.get_json()
+    print(jsonify(json_data))
+    return(jsonify(json_data))
 
-@app_views.route('/states/<state_id>', methods=['DELETE'],
+@app_views.route('/states/<string:state_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_State(state_id):
     """delete state using ID"""
