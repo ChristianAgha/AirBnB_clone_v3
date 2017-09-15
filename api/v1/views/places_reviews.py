@@ -65,11 +65,11 @@ def create_Review(place_id):
 
     review_Text = request_data.get("text")
     if review_Text is None:
-        return abort(400, 'Missing text')
+        return abort(400, "Missing text")
 
     user_id = request_data.get("user_id")
     if user_id is None:
-        return abort(400, 'Missing user_id')
+        return abort(400, "Missing user_id")
 
     user_from_ID = storage.get("User", user_id)
     if user_from_ID is None:
@@ -92,7 +92,7 @@ def update_Review(review_id):
         return abort(404)
     request_data = request.get_json()
     if request_data is None:
-        return abort(400, 'Not a JSON')
+        return abort(400, "Not a JSON")
 
     ignore = ['id', 'user_id', 'place_id', 'created_at', 'updated_at']
     for k, v in request_data.items():
