@@ -23,8 +23,6 @@ def get_All_Reviews(place_id):
     for review in review_list:
         if review.get("place_id") == place_id:
             list.append(review)
-    if list is None:
-        return abort(404)
 
     return jsonify(list)
 
@@ -97,9 +95,9 @@ def update_Review(review_id):
         return abort(404)
     request_data = request.get_json()
     if request_data is None:
-        abort(400, 'Not a JSON')
+        return abort(400, 'Not a JSON')
 
-    ignore = ['id', 'user_id', 'state_id', 'created_at', 'updated_at']
+    ignore = ['id', 'user_id', 'place_id', 'created_at', 'updated_at']
     for k, v in request_data.items():
         if k not in ignore:
             setattr(rev_to_update, k, v)
