@@ -16,7 +16,6 @@ def get_All_Reviews(place_id):
     """ Get all reviews belonging to specific place """
     place = storage.get("Place", place_id)
     if place is None:
-        print("################")
         return abort(404)
     list = []
     reviews = storage.all("Review").values()
@@ -63,7 +62,6 @@ def create_Review(place_id):
 
     place = storage.get("Place", place_id)
     if place is None:
-        print("!!!!!!!!!!!!!!!!!!!!")
         return abort(404)
 
     request_data = request.get_json()
@@ -80,7 +78,6 @@ def create_Review(place_id):
 
     user_from_ID = storage.get("User", user_id)
     if user_from_ID is None:
-        print("@@@@@@@@@@@@@@@@@@@@")
         return abort(404)
 
     request_data["place_id"] = place_id
