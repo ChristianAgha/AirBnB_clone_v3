@@ -17,14 +17,11 @@ def get_All_Reviews(place_id):
     place = storage.get("Place", place_id)
     if place is None:
         return abort(404)
-    list = []
-    reviews = storage.all("Review").values()
-    review_list = [review.to_json() for review in reviews]
-    for review in review_list:
-        if review.get("place_id") == place_id:
-            list.append(review)
+    reviews_list = []
+    for review in place.reviews:
+        reviews_list.append(review.to_json())
 
-    return jsonify(list)
+    return jsonify(reviews_list)
 
 
 @app_views.route('/reviews/<review_id>', methods=['GET'],
