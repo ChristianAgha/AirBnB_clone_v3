@@ -50,9 +50,6 @@ def create_User():
     request_data = request.get_json()
     if request_data is None:
         abort(400, 'Not a JSON')
-    name = request_data.get("name")
-    if name is None:
-        abort(400, 'Missing name')
     email = request_data.get("email")
     if email is None:
         abort(400, 'Missing email')
