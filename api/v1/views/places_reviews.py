@@ -63,10 +63,6 @@ def create_Review(place_id):
     if request_data is None:
         return abort(400, 'Not a JSON')
 
-    review_Text = request_data.get("text")
-    if review_Text is None:
-        return abort(400, "Missing text")
-
     user_id = request_data.get("user_id")
     if user_id is None:
         return abort(400, "Missing user_id")
@@ -74,6 +70,10 @@ def create_Review(place_id):
     user_from_ID = storage.get("User", user_id)
     if user_from_ID is None:
         return abort(404)
+
+    review_Text = request_data.get("text")
+    if review_Text is None:
+        return abort(400, "Missing text")
 
     request_data["place_id"] = place_id
     new_Review = Review(**request_data)
