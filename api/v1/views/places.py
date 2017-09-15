@@ -29,7 +29,7 @@ def get_All_Places(city_id):
 
 
 @app_views.route('/places/<place_id>', methods=['GET'],
-                 strict_slashes=Flase)
+                 strict_slashes=False)
 def get_Place(place_id):
     """ Get place belonging to specific ID """
 
