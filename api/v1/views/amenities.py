@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+methods=['GET'],#!/usr/bin/python3
 """
 Handles all default RestFul API actions for Amenity class
 """
@@ -22,7 +22,7 @@ def get_Amenities():
 @app_views.route('/amenities/<amenity_id>', methods=['GET'],
                  strict_slashes=False)
 def get_Amenities_by_ID(amenity_id):
-    """get all Amenities by State """
+    """get all Amenities by ID """
 
     the_amenity = storage.get("Amenity", amenity_id)
     if the_amenity is None:
@@ -46,7 +46,7 @@ def delete_Amenity(amenity_id):
 
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_Amenity():
-
+    """ create amenity """
     request_data = request.get_json()
     if request_data is None:
         abort(400, 'Not a JSON')
@@ -59,7 +59,7 @@ def create_Amenity():
     return make_response(jsonify(new_Amenity.to_json()), 201)
 
 
-@app_views.route('/amenities/<string:amenity_id>', methods=['PUT']
+@app_views.route('/amenities/<string:amenity_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_Amenity(amenity_id):
     """ Updates Amenity objects """
